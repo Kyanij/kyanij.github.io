@@ -1,0 +1,69 @@
+
+<!doctype html>
+<html>
+<head>
+<title>Learning jQuery</title>
+<meta charset="utf-8" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script type="text/javascript" src="jquery.min.js"></script>
+<style>
+#wrapper {
+width:600px;
+margin:0 auto;
+font-family: helvetica;
+font-size:1.2em;
+}
+
+input{
+	width:300px;
+	height: 30px;
+	padding: 5px;
+	border-radius: 5px;
+	font-size: 1.2em;
+	border:1px solid grey;
+	margin-bottom: 10px;
+}
+label{
+	width:200px;
+	float:left;
+	padding-top:7px;
+}
+#submitButton{
+		height: 50px;
+		width: 100px;
+		margin-left: 200px;
+
+}
+</style>
+<body>
+		<div id="wrapper">WELCOME TO FORM VALIDATION<br><br>
+			<br>
+		<form id="validationForm">
+			<label for="email">Email:</label>
+		<input type="email" placeholder="Email" /><br>
+
+		<label for="phone">Telephone:</label>
+		<input type="phone" placeholder="Phone No." /><br>
+
+		<label for="password">Password:</label>
+		<input type="password" placeholder="Password" /><br>
+
+		<label for="password">Confirm Password:</label>
+		<input type="password" placeholder="Password" /><br>
+
+		<input id="submitButton" type="submit" value="Submit" />
+		
+		</form>
+			
+			
+		</div>
+<script>
+	$("#validationForm").submit(function(event) {
+
+		event.preventDefault();
+		alert("you clicked subbmit");
+	});
+</script>
+</body>
+</html>
