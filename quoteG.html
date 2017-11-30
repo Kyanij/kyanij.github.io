@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Random Quote Machine</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+   
+$(document).ready(function(){
+  
+  var quote;
+  var author;
+  
+  function getNewQuote()
+  {
+    $.ajax({
+      
+      url:'http://api.forismatic.com/api/1.0/',
+      jsonp:'jsonp',
+      dataType:'jsonp',
+      data:{
+        method:'getQuote',
+        format:'jsonp',
+        lang:'en'
+      },
+      success: function(response){
+     quote = response.quoteText;
+      author = response.quoteAuthor;
+        console.log(response.quoteText);
+       $('#quote').text(quote);
+       if(author){
+       	 $('#author').text(author);
+       	}else{
+       		$('author').text('-unknown');
+       	}
+      
+      }
+    });  
+  }
+   getNewQuote(); 
+   $('#getQuote').on('click', function(){
+
+   	getNewQuote();
+   })
+   $('#shareTwitter').on('click',function(){
+
+   	window.open('https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent('"' + quote + '" ' + author));
+   })
+});
+   
+</script>
+</head>
+<style>
+p{
+	padding-top: 60px;
+	text-align: center;
+}
+
+
+  h1{
+  	text-align: center;
+  	color: #1ABB50 ;
+  	padding-top: 20px;
+  }
+  body{
+  	background-color: #022d3d;
+  	font-family:sans-serif;
+  	font-size: 2em;
+  	color:white;
+  }
+.quote-box{
+
+	border-radius: 3px;
+	position: relative;
+	width: 450px;
+	margin: 10% auto auto auto;
+}
+.quote-author{
+	text-align: right;
+	font-weight: 500;
+	width: 400px;
+	padding-top: 20px;
+	font-size: 1em;
+	height: auto;
+	clear:both;
+}
+ i{
+      font-size:1.0em;
+      margin-right: 0.4em;
+    }
+
+/*button{
+	padding-bottom: 20px;
+}*/
+
+
+</style>
+<body>
+	<h1>Random Quote Generator</h1>
+	<!-- <p id="quote"></p>
+	<br>
+	<p class="pright" id="author"></p> -->
+
+	<div class="quote-box">
+  <div class="quote-text">
+    <i class="fa fa-quote-left">  </i><span id="quote"> <br></span>
+  </div>
+ 
+  <div class="quote-author">
+    - <span id="author"></span>
+  </div>
+
+  <br><br>
+  <div class="row">
+  	<div class="col-md-4">
+  		<button class="btn btn-success btn-lg" id="shareTwitter"><i class="fa fa-twitter"></i> Share Quote</button>
+  
+</div>
+<div class="col-md-8">
+	 <button class="btn btn-success btn-lg pull-right" id="getQuote">Get Quote</button>
+</div>
+</div>
+</div>
+</body>
+</html>
