@@ -1,2 +1,2 @@
 # kyanij.github.io
-my personal website
+landing page for app
